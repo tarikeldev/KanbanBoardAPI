@@ -1,14 +1,16 @@
 ﻿using KanbanBoard.Application.Dtos.Board;
 using KanbanBoard.Application.Interfaces.Board;
+using KanbanBoard.WebApi.Controllers.Base;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace KanbanBoard.API.Controllers
+namespace KanbanBoard.API.Controllers.Board
 {
-    [ApiController]
+
     [Route("api/boards")]
-    public class BoardController : ControllerBase
+    public class BoardController : ApiBaseController
     {
         private readonly IBoardService _boardService;
 

@@ -5,7 +5,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace KanbanBoard.WebApi.Controllers.AuthenticationControllers
+namespace KanbanBoard.WebApi.Controllers.Authentication
 {
     [ApiController]
     [Route("api/[controller]")]
