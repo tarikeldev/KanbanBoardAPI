@@ -2,14 +2,10 @@
 using KanbanBoard.Infrastructure.Persistence.Contexts;
 using KanbanBoard.Infrastructure.Persistence.Repositories;
 using KanbanBoard.Infrastructure.Persistence.Seed;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KanbanBoard.Infrastructure
 {
@@ -20,7 +16,6 @@ namespace KanbanBoard.Infrastructure
             // Ensure the DbContext is registered with the correct options
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
-
             // Register IRepository and its implementation
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 

@@ -1,12 +1,12 @@
 ﻿using KanbanBoard.Application.Dtos.Tasks;
+using KanbanBoard.WebApi.Controllers.Base;
 using KanbanTask.Application.Interfaces.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace KanbanBoard.WebApi.Controllers.TaskControllers
+namespace KanbanBoard.WebApi.Controllers.Task
 {
-    [ApiController]
-    [Route("api/Tasks")]
-    public class TaskController : ControllerBase
+    [Route("api/tasks")]
+    public class TaskController : ApiBaseController
     {
         private readonly ITaskService _taskService;
 

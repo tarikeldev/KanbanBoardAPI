@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/src/KanbanBoard.WebApi/appsettings.Development.json
+/src/KanbanBoard.WebApi/appsettings.Development.json
+/src/KanbanBoard.WebAPI/appsettings.Development.json
