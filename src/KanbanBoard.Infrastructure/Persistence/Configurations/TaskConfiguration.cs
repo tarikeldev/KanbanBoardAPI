@@ -1,4 +1,6 @@
 ﻿using KanbanBoard.Domain.Entities.Board;
+using KanbanBoard.Domain.Entities.Task;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -9,14 +11,23 @@ using System.Threading.Tasks;
 
 namespace KanbanBoard.Infrastructure.Persistence.Configurations
 {
-    public class BoardConfiguration : IEntityTypeConfiguration<BoardEntity>
+    public class TaskConfiguration : IEntityTypeConfiguration<TaskEntity>
     {
-        public void Configure(EntityTypeBuilder<BoardEntity> builder)
+        public void Configure(EntityTypeBuilder<TaskEntity> builder)
         {
             builder.HasKey(b => b.Id);
             builder.Property(b => b.Title)
                 .IsRequired()
                 .HasMaxLength(200);
+            builder.HasOne<BoardEntity>()
+                .WithMany()
+                .HasForeignKey(b => b.BoardId)
+                .OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne<IdentityUser<int>>()
+            .WithMany()
+            .HasForeignKey(b => b.UserId)
+            .OnDelete(DeleteBehavior.Restrict);
+
         }
     }
 }
