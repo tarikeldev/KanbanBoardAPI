@@ -1,6 +1,8 @@
 ﻿using KanbanBoard.Application.Interfaces.Repositories;
+using KanbanBoard.Application.Interfaces.Repositories.Auth;
 using KanbanBoard.Infrastructure.Persistence.Contexts;
 using KanbanBoard.Infrastructure.Persistence.Repositories;
+using KanbanBoard.Infrastructure.Persistence.Repositories.Auth;
 using KanbanBoard.Infrastructure.Persistence.Seed;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +20,7 @@ namespace KanbanBoard.Infrastructure
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
             // Register IRepository and its implementation
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<IUserRepository, UserRepository>();
 
             return services;
         }

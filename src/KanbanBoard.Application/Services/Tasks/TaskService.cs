@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using KanbanBoard.Application.Dtos.Tasks;
 using KanbanBoard.Application.Interfaces.Repositories;
+using KanbanBoard.Domain.Entities.Base;
 using KanbanBoard.Domain.Entities.Task;
 using KanbanTask.Application.Interfaces.Tasks;
 using System;
@@ -24,6 +25,7 @@ namespace KanbanBoard.Application.Services.Tasks
         public async Task<TaskDto> CreateTaskAsync(TaskDto createTaskDto)
         {
             var taskEntity = this.mapper.Map<TaskDto, TaskEntity>(createTaskDto);
+            taskEntity.CreatedAt = DateTime.UtcNow;
             await this.repository.AddAsync(taskEntity);
             return this.mapper.Map<TaskEntity, TaskDto>(taskEntity);
 
@@ -64,8 +66,10 @@ namespace KanbanBoard.Application.Services.Tasks
             }
 
             // Map the updated properties from the DTO to the existing entity
+            var createdAt = existingTask.CreatedAt;
             this.mapper.Map(updateTaskDto, existingTask);
 
+            existingTask.CreatedAt = createdAt;
             // Update the task entity in the repository
             await this.repository.UpdateAsync(existingTask);
         }
