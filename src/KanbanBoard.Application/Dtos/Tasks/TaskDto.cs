@@ -15,5 +15,7 @@ namespace KanbanBoard.Application.Dtos.Tasks
         public string? Username { get; set; }
         public DateTime CreatedAt { get; set; }
         public int BoardId { get; set; }
+        public Priority Priority { get; set; }
+
     }
 }
